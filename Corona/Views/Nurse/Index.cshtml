@@ -1,0 +1,113 @@
+﻿@model IEnumerable<Corona.Models.Content.RequestTest>
+
+@{
+    ViewData["Title"] = "Schedule";
+    Layout = "~/Views/Shared/_StafLayout.cshtml";
+}
+
+<div id="PlaceholderHere"></div>
+
+        <div class="header-body">
+           
+            <div class="row">
+                <div class="col-xl-4 col-md-6">
+                    <div class="card card-stats">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col">
+                                    <h5 class="card-title text-uppercase text-muted mb-0">Total Pending Request</h5>
+                                    <span class="h6 font-weight-bold mb-0">@ViewBag.CountPendingAppts</span>
+                                </div>
+                                <div class="col-auto">
+                                    <div class="icon icon-shape bg-gradient-white text-white rounded-circle shadow">
+                                        <img src="~/img/icon-01.png" class="img-fluid" alt="" />
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="mt-3 mb-0 text-sm">
+                                <span class="text-success mr-2"><i class="zmdi zmdi-arrow-up"></i></span>
+                                <span class="text-nowrap">Till Today</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-4 col-md-6">
+                    <div class="card card-stats">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col">
+                                    <h5 class="card-title text-uppercase text-muted mb-0">Nurse Scheduled</h5>
+                                    <span class="h6 font-weight-bold mb-0">@ViewBag.CountStaffAppts</span>
+                                </div>
+                                <div class="col-auto">
+                                    <div class="icon icon-shape bg-gradient-white text-white rounded-circle shadow">
+                                        <img src="~/img/icon-02.png" class="img-fluid" alt="" />
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="mt-3 mb-0 text-sm">
+                                <span class="text-success mr-2"><i class="zmdi zmdi-arrow-up"></i></span>
+                                <span class="text-nowrap">Only Today: @DateTime.Now.Date.ToShortDateString()</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-4 col-md-6">
+                    <div class="card card-stats">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col">
+                                    <h5 class="card-title text-uppercase text-muted mb-0">Tomorrow's Schedule</h5>
+                                    <span class="h6 font-weight-bold mb-0">@ViewBag.CountApptsTomoro</span>
+                                </div>
+                                <div class="col-auto">
+                                    <div class="icon icon-shape bg-gradient-white text-white rounded-circle shadow">
+                                        <img src="~/img/icon-03.png" class="img-fluid" alt="" />
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="mt-3 mb-0 text-sm">
+                                <span class="text-success mr-2"><i class="zmdi zmdi-arrow-up"></i> </span>
+                                <span class="text-nowrap">Only Tomorrow: @DateTime.Now.Date.ToShortDateString()</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+<table>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <div class="col-md-12">
+                <div class="appointments">
+                    <div class="appointment-list">
+                        <div class="profile-info-widget">
+                            <a href="patient-profile.html" class="booking-doc-img">
+                                <img src="~/admin-assets/img/profiles/prof.PNG" alt="User Image">
+                            </a>
+                            <div class="profile-det-info">
+                                <h3><a href="patient-profile.html"> @Html.DisplayFor(modelItem => item.Requestor.FullName)</a></h3>
+                                <div class="patient-details">
+                                    <h5><i class="far fa-clock"></i> @Html.DisplayFor(modelItem => item.RequestedDate)</h5>
+                                    <h5><i class="fas fa-map-marker-alt"></i>  @Html.DisplayFor(modelItem => item.AddressLine1) @Html.DisplayFor(modelItem => item.AddressLine2),  @Html.DisplayFor(modelItem => item.Suburb.SuburbName)</h5>
+                                    <h5><i class="fas fa-envelope"></i>  @Html.DisplayFor(modelItem => item.Requestor.Email)</h5>
+                                    <h5 class="mb-0"><i class="fas fa-phone"></i>  @Html.DisplayFor(modelItem => item.Requestor.PhoneNumber)</h5>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="appointment-action">
+                            <a href="#" class="btn btn-sm bg-info-light" data-toggle="modal" data-target="#appt_details">
+                                <i class="far fa-eye"></i> View
+                            </a>
+                            <a asp-action="AcceptRequest" asp-route-id="@item.RequestId" class="btn btn-sm bg-success-light">
+                                <i class="fas fa-check"></i> Accept
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>      
+            }
+        </tbody>
+</table>
+      

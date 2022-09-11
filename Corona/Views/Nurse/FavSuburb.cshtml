@@ -1,0 +1,28 @@
+﻿@model IEnumerable<Corona.Models.Content.Suburb>
+
+@{
+    ViewData["Title"] = "Schedule";
+    Layout = "~/Views/Shared/_StafLayout.cshtml";
+}
+
+@foreach (var item in Model)
+{
+
+    <div class="schedule-cont">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="time-slot">
+                    <ul class="clearfix">
+                        <li>
+                            <a class="timing" href="#">
+                                <span>@item.SuburbName</span> <span></span>
+                            </a>
+
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+}

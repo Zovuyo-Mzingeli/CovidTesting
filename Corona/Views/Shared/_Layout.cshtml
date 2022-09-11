@@ -1,0 +1,224 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using Corona.Models
+
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+    <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.ico">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="~/last/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="~/last/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="~/last/css/select2.min.css">
+    <link rel="stylesheet" type="text/css" href="~/last/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" type="text/css" href="~/last/css/bootstrap-datetimepicker.min.css">
+    <link rel="stylesheet" type="text/css" href="~/last/css/style.css">
+    <link href="~/main/css/styless.css" rel="stylesheet" />
+    <link href="~/main/css/styles.css" rel="stylesheet" />
+
+    <link href="~/lay/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" />
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" />
+
+    <style>
+        input.input-validation-error {
+            border-color: red;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="main-wrapper">
+        <div class="header">
+            <div class="header-left">
+                <a asp-controller="Home" asp-action="Index" class="logo">
+                    @*<img src="~/images/TCctive.PNG" class="rounded-circle"
+                        height="40" width="40" asp-append-version="true" alt="">*@ <span class=" mb-0 text-sm font-weight-bold">Corona</span>
+                </a>
+            </div>
+            <a id="toggle_btn" href="javascript:void(0);"><i class="fa fa-bars"></i></a>
+            <a id="mobile_btn" class="mobile_btn float-left" href="#sidebar"><i class="fa fa-bars"></i></a>
+            <ul class="nav user-menu float-right">
+                <li class="nav-item dropdown d-none d-sm-block">
+                    <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown"><i class="fa fa-bell-o"></i> <span class="badge badge-pill bg-danger float-right"></span></a>
+                    <div class="dropdown-menu notifications">
+                        <div class="topnav-dropdown-header">
+                            <span>Notifications</span>
+                        </div>
+                        <div class="drop-scroll">
+                            <ul class="notification-list">
+                            </ul>
+                        </div>
+                    </div>
+                </li>
+                <li class="nav-item dropdown d-none d-sm-block">
+                    <a href="javascript:void(0);" id="open_msg_box" class="hasnotifications nav-link"><i class="fa fa-comment-o"></i> <span class="badge badge-pill bg-danger float-right"></span></a>
+                </li>
+                <li class="nav-item dropdown has-arrow">
+                    <a href="#" class="dropdown-toggle nav-link user-link" data-toggle="dropdown">
+                        <span class="user-img">
+                            <img class="rounded-circle" src="~/img/specialities-02.png" width="24" alt="">
+                            <span class="status online"></span>
+                        </span>
+                        <span>
+                            @if (SignInManager.IsSignedIn(User))
+                            {
+                                <span class="mb-0 text-sm  font-weight-bold">Hello @UserManager.GetUserName(User)!</span>
+                            }
+                        </span>
+                    </a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="profile.html">My Profile</a>
+                        <a class="dropdown-item" href="edit-profile.html">Edit Profile</a>
+                        <a class="dropdown-item" href="settings.html">Settings</a>
+                        <a class="dropdown-item" asp-controller="Account" asp-action="Logout">Logout</a>
+                    </div>
+                </li>
+            </ul>
+            <div class="dropdown mobile-user-menu float-right">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
+                <div class="dropdown-menu dropdown-menu-right">
+                    <a class="dropdown-item" href="profile.html">My Profile</a>
+                    <a class="dropdown-item" href="edit-profile.html">Edit Profile</a>
+                    <a class="dropdown-item" href="settings.html">Settings</a>
+                    <a class="dropdown-item" asp-controller="Account" asp-action="Logout">Logout</a>
+                </div>
+            </div>
+        </div>
+        <div class="sidebar" id="sidebar">
+            <div class="sidebar-inner slimscroll">
+                <div id="sidebar-menu" class="sidebar-menu">
+                    <ul>
+                        <li class="active">
+                            <a asp-controller="Administration" asp-action="Index"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a>
+                        </li>
+                        <li>
+                            <a asp-controller="Users" asp-action="AllDoctors"><i class="fa fa-user-md"></i> <span>Doctors</span></a>
+                        </li>
+                        <li>
+                            <a asp-controller="Users" asp-action="AllPatients"><i class="fa fa-wheelchair"></i> <span>Patients</span></a>
+                        </li>
+                        <li>
+                            <a asp-controller="Department" asp-action="Index"><i class="fa fa-hospital-o"></i> <span>Departments</span></a>
+                        </li>
+                        <li class="submenu">
+                            <a href="#"><i class="fa fa-user"></i> <span> Manage Users </span> <span class="menu-arrow"></span></a>
+                            <ul style="display: none;">
+                                <li><a asp-controller="Administration" asp-action="ManageUser">Configure Users</a></li>
+                                <li><hr class="sidebar-divider"></li>
+                                <li> <h6 class="collapse-header">Employees:</h6></li>
+                                <li><a class="collapse-item" asp-controller="Users" asp-action="Index">All User</a></li>
+                                <li><a class="collapse-item" asp-controller="Users" asp-action="AllNurses">All Nurses</a></li>
+                                <li><a class="collapse-item" asp-controller="Users" asp-action="AllDoctors">All Doctors</a></li>
+                                <li><a class="collapse-item" asp-controller="Users" asp-action="AllPharmacists">All Pharmacists</a></li>
+                                <li><a class="collapse-item" asp-controller="WalkIns" asp-action="Index">All WalkIns</a></li>
+                            </ul>
+                        </li>
+                        <li class="submenu">
+                            <a href="#"><i class="fa fa-calendar"></i> <span> Appointments </span> <span class="menu-arrow"></span></a>
+                            <ul style="display: none;">
+                                <li><a asp-controller="Scheduler" asp-action="AllAppointments">All Appointment</a></li>
+                                <li><a asp-controller="Scheduler" asp-action="AllConfirmedAppointments">Approved Appointment</a></li>
+                                <li><a asp-controller="WalkIns" asp-action="MakeAppointment">Make Appointment</a></li>
+                                <li><a asp-controller="Scheduler" asp-action="AllUnconfirmedAppointments">Pending Appointment</a></li>
+                                <li><a asp-controller="Charts" asp-action="Index">Appointment Reports</a></li>
+                            </ul>
+                        </li>
+                        <li class="submenu">
+                            <a href="#"><i class="fa fa-map-signs"></i> <span> Locations</span> <span class="menu-arrow"></span></a>
+                            <ul style="display: none;">
+                                <li><a asp-controller="Provinces" asp-action="Index">Provinces</a></li>
+                                <li><a asp-controller="Region" asp-action="Index">Region</a></li>
+                                <li><a asp-controller="City" asp-action="Index">City</a></li>
+                            </ul>
+                        </li>
+                        <li class="submenu">
+                            <a href="#"><i class="fa fa-clinic-medical"></i> <span> Health Sectors</span> <span class="menu-arrow"></span></a>
+                            <ul style="display: none;">
+                                <li><a asp-controller="Hospital" asp-action="Index">Hospitals</a></li>
+                                <li><a asp-controller="Clinic" asp-action="Index">Clinics</a></li>
+                            </ul>
+                        </li>
+                        <li class="submenu">
+                            <a href="#"><i class="fa fa-cart-plus"></i> <span>Stock</span> <span class="menu-arrow"></span></a>
+                            <ul style="display: none;">
+                                <li><a asp-controller="Allergies" asp-action="Index">Allergies</a></li>
+                                <li><a asp-controller="Medications" asp-action="Index">Medication</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="page-wrapper">
+            <div class="content">
+                @RenderBody()
+            </div>
+        </div>
+    </div>
+
+    <div class="sidebar-overlay" data-reff=""></div>
+    <script src="~/last/js/jquery-3.2.1.min.js"></script>
+    <script src="~/last/js/popper.min.js"></script>
+    <script src="~/last/js/bootstrap.min.js"></script>
+    <script src="~/last/js/jquery.slimscroll.js"></script>
+    <script src="~/last/js/select2.min.js"></script>
+    <script src="~/last/js/jquery.dataTables.min.js"></script>
+    <script src="~/last/js/dataTables.bootstrap4.min.js"></script>
+    <script src="~/last/js/moment.min.js"></script>
+    <script src="~/last/js/bootstrap-datetimepicker.min.js"></script>
+    <script src="~/last/js/Chart.bundle.js"></script>
+    <script src="~/last/js/chart.js"></script>
+    <script src="~/last/js/app.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+    <script src="~/js/site.js" asp-append-version="true"></script>
+        <script src="~/js/notify.min.js" asp-append-version="true"></script>
+
+        <script src="~/tables/datatables/jquery.dataTables.min.js"></script>
+        <script src="~/tables/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+        <script src="~/tables/datatables-responsive/js/dataTables.responsive.min.js"></script>
+        <script src="~/tables/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+
+        <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+
+
+        <script>
+            $(function () {
+                $("#example1").DataTable({
+                    "responsive": true,
+                    "autoWidth": false,
+                });
+                $('#example2').DataTable({
+                    "paging": true,
+                    "lengthChange": false,
+                    "searching": false,
+                    "ordering": true,
+                    "info": true,
+                    "autoWidth": false,
+                    "responsive": true,
+                });
+            });
+        </script>
+
+    @await Html.PartialAsync("_notificationPartial")
+    @RenderSection("Scripts", required: false)
+</body>
+
+
+
+</html>

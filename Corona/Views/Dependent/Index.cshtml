@@ -1,0 +1,75 @@
+﻿@model IEnumerable<Corona.Models.ViewModel.DedepentViewModel.PatientViewModel>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_LayoutMain_Member.cshtml";
+}
+
+
+<div class="col-xl-12 order-xl-1">
+    <div class="card">
+        <div class="card-header">
+            <div class="row align-items-center">
+                <div class="col-8">
+                    <h3 class="mb-0"></h3>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+            <h6 class="heading-small text-muted mb-4">Your Dependent</h6>
+            <div class="mb-0">
+                <div class="card-body">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>
+                                    First Name
+                                </th>
+                                <th>
+                                    LastName
+                                </th>
+                                <th>
+                                    Phone Number
+                                </th>
+                                <th>
+                                    Address Line 1
+                                </th>
+
+
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.FirstName)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.LastName)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.PhoneNumber)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.AddressLine1)
+                                    </td>
+                                    <td>
+                                        <a asp-action="AddOrEdit" asp-route-id="@item.DependentId">Edit</a> |
+                                        <a asp-action="Delete" asp-route-id="@item.DependentId">Delete</a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+          

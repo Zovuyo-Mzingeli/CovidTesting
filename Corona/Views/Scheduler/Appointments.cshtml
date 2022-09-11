@@ -1,0 +1,150 @@
+﻿@model IEnumerable<Corona.Models.ViewModels.PatientViewModel.PatientAppointmentsListViewModel>
+
+@{
+    ViewData["Title"] = "Appointments";
+    Layout = "~/Views/Shared/_UsersLayout.cshtml";
+}
+
+
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
+        <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
+            <li class="breadcrumb-item"><a asp-controller="Account" asp-action="Index"><i class="ni ni-single-02 text-yellow"></i></a></li>
+            <li class="breadcrumb-item"><a asp-controller="Scheduler" asp-action="Appointments">Appointment</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Your Appointment(s)</li>
+        </ol>
+    </nav>
+</div>
+
+@{
+    var trClass = "bg-active";
+    var status = "Upcoming";
+}
+
+<div class="col-xl-12 order-xl-1">
+    <div class="card">
+        <div class="card-header">
+            <div class="row align-items-center">
+                <div class="col-8">
+                    <h3 class="mb-0"></h3>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+            <h6 class="heading-small text-muted mb-4">Your Appointment</h6>
+            <div class="mb-0">
+                <div class="card-body">
+                    <table class="table table-border table-striped custom-table datatable mb-0">
+                        <thead>
+                            @if (Model.Count() == 0)
+                            {
+                                <tr>
+                                    <th scope="row" colspan="6" class="text-center">No Appointments</th>
+                                </tr>
+                            }
+                            else
+                            {
+                                <tr>
+                                    <th>Schedule</th>
+                                    <th>Date</th>
+                                    <th>From</th>
+                                    <th>Status</th>
+                                    <th>Clinic</th>
+                                    <th>Doctor</th>
+                                    <th>Nurse</th>
+                                    <th>Description</th>
+                                    <th>Action</th>
+                                </tr>
+                            }
+                        </thead>
+                        <tbody>
+                            @foreach (var appointment in Model)
+                            {
+                                trClass = "bg-active";
+                                status = "Upcoming";
+
+                                if (appointment.AppointmentDate < DateTime.Now.Date)
+                                {
+                                    trClass = "bg-warning";
+                                    status = "Passed";
+                                }
+                                else if (appointment.AppointmentDate == DateTime.Now.Date && DateTime.Now.TimeOfDay > appointment.StartTime)
+                                {
+                                    trClass = "bg-warning";
+                                    status = "Passed";
+                                }
+                                //var isBooked = appointment.IsConfirmed != false;
+                                //var clinic = appointment.ClinicName != null;
+                                //var hospital = appointment.HospitalName != null;
+                                //var Dr = appointment.DoctorName != null;
+                                //var nurse = appointment.NurseName != null;
+
+
+                                <tr class="@trClass">
+                                    <th scope="row">@status</th>
+                                    <td>@appointment.AppointmentDate.ToShortDateString()</td>
+                                    <td>@appointment.StartTime</td>
+                                    <td>
+                                        @if (appointment.IsConfirmed == true)
+                                        {
+                                            <span class="text-success">Confirmed</span>
+                                        }
+                                        else if (appointment.AppointmentDate == DateTime.Now.Date && DateTime.Now.TimeOfDay > appointment.StartTime)
+                                        {
+                                            <span class="text-info">Done</span>
+                                        }
+                                        else
+                                        {
+                                            <span class="text-warning">Pending</span>
+                                        }
+                                    </td>
+                                    <td>
+                                        @if (appointment.ClinicName != null)
+                                        {
+                                            @appointment.ClinicName
+                                        }
+                                        else
+                                        {
+                                            <span class="text-warning">N/A</span>
+                                        }
+                                    </td>
+                                    <td>
+                                        @if (appointment.DoctorName != null)
+                                        {
+                                            @appointment.DoctorName
+                                        }
+                                        else
+                                        {
+                                            <span class="">Not Assigned</span>
+                                        }
+                                    </td>
+                                    <td>
+                                        @if (appointment.NurseName != null)
+                                        {
+                                            @appointment.NurseName
+                                        }
+                                        else
+                                        {
+                                            <span class="">Not Assigned</span>
+                                        }
+                                    </td>
+                                    <td>@appointment.AppointmentDescription</td>
+                                    <td class="text-right">
+                                        <div class="dropdown dropdown-action">
+                                            <a class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
+                                            <div class="dropdown-menu dropdown-menu-right">
+                                                <a class="dropdown-item" asp-action="DeleteAppointment" asp-route-id="@appointment.AppointmentId"><i class="mdi mdi-delete btn-icon-prepend"></i> Cancel</a>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

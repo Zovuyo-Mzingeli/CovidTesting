@@ -1,0 +1,154 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_UsersLayout.cshtml";
+}
+
+<link href="~/lay2/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+<link href="~/lay2/plugins/cubeportfolio/css/cubeportfolio.min.css" rel="stylesheet" />
+<link href="~/lay2/css/nivo-lightbox.css" rel="stylesheet" />
+<link href="~/lay2/css/nivo-lightbox-theme/default/default.css" rel="stylesheet" />
+<link href="~/lay2/css/owl.carousel.css" rel="stylesheet" />
+<link href="~/lay2/css/owl.theme.css" rel="stylesheet" />
+<link href="~/lay2/css/animate.css" rel="stylesheet" />
+
+
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
+        <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
+            <li class="breadcrumb-item"><a asp-controller="Account" asp-action="Index"><i class="ni ni-single-02 text-yellow"></i></a></li>
+            <li class="breadcrumb-item"><a asp-controller="Account" asp-action="UserDetails">Patient</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Home</li>
+        </ol>
+    </nav>
+</div>
+
+<section id="callaction" class="home-section paddingtop-40">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="callaction bg-light">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <div class="wow fadeInUp" data-wow-delay="0.1s">
+                                <div class="cta-text">
+                                    <h3>You want to request a  covid test for you and your loved ones?</h3>
+                                    <p>We are gere for you, and you dont have to leave your home, we come to you. Please update your personal details and address before making a request. </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="wow lightSpeedIn" data-wow-delay="0.1s">
+                                <div class="cta-btn">
+                                    <a asp-controller="Account" asp-action="EditUser" class="btn btn-default btn-lg">Update Profile</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="service" class="home-section nopadding paddingtop-50">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6 col-md-6">
+                <div class="wow fadeInUp" data-wow-delay="0.2s">
+                    <img src="~/images/doctor-3.jpg" class="img-responsive" alt=""/>
+                    @*<img src="~/lay2/img/dummy/img-1.jpg" class="img-responsive" alt="" />*@
+                </div>
+            </div>
+            @*<div class="col-sm-3 col-md-3">
+
+                <div class="wow fadeInRight" data-wow-delay="0.1s">
+                    <div class="service-box">
+                        <div class="service-icon">
+                            <span class="fa fa-stethoscope fa-3x"></span>
+                        </div>
+                        <div class="service-desc">
+                            <h5 class="h-light">Medical checkup</h5>
+                            <p>The assessment may involve a chest x-ray, blood tests, urine drug screen, alcohol breath test, audiometry (hearing test), spirometry (lung test), manual handling assessment, fitness test.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="wow fadeInRight" data-wow-delay="0.2s">
+                    <div class="service-box">
+                        <div class="service-icon">
+                            <span class="fa fa-wheelchair fa-3x"></span>
+                        </div>
+                        <div class="service-desc">
+                            <h5 class="h-light">Nursing Services</h5>
+                            <p>Nurses assess and observe patients, help doctors create a care plan, and carry out that care plan with medication and treatment administration. Nurses use a variety of medical equipment for both monitoring and performing treatments. They may also do diagnostic tests, take vitals and interpret the results.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="wow fadeInRight" data-wow-delay="0.3s">
+                    <div class="service-box">
+                        <div class="service-icon">
+                            <span class="fa fa-plus-square fa-3x"></span>
+                        </div>
+                        <div class="service-desc">
+                            <h5 class="h-light">Pharmacy</h5>
+                            <p>Medical Pharmacies is the leader in medication management, specialty pharmacy services and providing medical supplies and equipment to our customers. Our legacy of caring for people and exceptional service continues to be an integral part of the fabric of the company.</p>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="col-sm-3 col-md-3">
+
+                <div class="wow fadeInRight" data-wow-delay="0.1s">
+                    <div class="service-box">
+                        <div class="service-icon">
+                            <span class="fa fa-h-square fa-3x"></span>
+                        </div>
+                        <div class="service-desc">
+                            <h5 class="h-light">Gyn Care</h5>
+                            <p>We deal with a wide range of issues, including obstetrics, or pregnancy and childbirth, menstruation and fertility issues, sexually transmitted infections (STIs), hormone disorders, and others.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="wow fadeInRight" data-wow-delay="0.2s">
+                    <div class="service-box">
+                        <div class="service-icon">
+                            <span class="fa fa-filter fa-3x"></span>
+                        </div>
+                        <div class="service-desc">
+                            <h5 class="h-light">Neurology</h5>
+                            <p>Many neurologists also have additional training or interest in one area of neurology, such as stroke, epilepsy, neuromuscular, sleep medicine, pain management, or movement disorders.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="wow fadeInRight" data-wow-delay="0.3s">
+                    <div class="service-box">
+                        <div class="service-icon">
+                            <span class="fa fa-user-md fa-3x"></span>
+                        </div>
+                        <div class="service-desc">
+                            <h5 class="h-light">Sleep Center</h5>
+                            <p>To be seen for a specific service (insomnia program, restless legs syndrome, parasomnia or narcolepsy clinic) please notify our staff when making your appointment.</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>*@
+
+        </div>
+    </div>
+</section>
+<script src="~/lay2/js/jquery.min.js"></script>
+<script src="~/lay2/js/bootstrap.min.js"></script>
+<script src="~/lay2/js/jquery.easing.min.js"></script>
+<script src="~/lay2/js/wow.min.js"></script>
+<script src="~/lay2/js/jquery.scrollTo.js"></script>
+<script src="~/lay2/js/jquery.appear.js"></script>
+<script src="~/lay2/js/stellar.js"></script>
+<script src="~/lay2/plugins/cubeportfolio/js/jquery.cubeportfolio.js"></script>
+<script src="~/lay2/js/nivo-lightbox.min.js"></script>
+<script src="~/lay2/js/custom.js"></script>
+

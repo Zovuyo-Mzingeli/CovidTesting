@@ -1,0 +1,137 @@
+﻿@model Corona.Models.ViewModel.DedepentViewModel.PatientViewModel
+
+@{
+    ViewData["Title"] = "AddDepedent";
+    Layout = "~/Views/Shared/_LayoutMain_Member.cshtml";
+}
+<form asp-action="AddDepedent" method="post" enctype="multipart/form-data">
+    <div asp-validation-summary="All" class="text-danger"></div>
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Basic Information</h4>
+            <div class="row form-row">
+
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>First Name <span class="text-danger">*</span></label>
+                        <input asp-for="FirstName" class="form-control" />
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Last Name <span class="text-danger">*</span></label>
+                        <input asp-for="LastName" class="form-control" />
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Email <span class="text-danger">*</span></label>
+                        <input asp-for="Email" class="form-control" />
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Phone Number</label>
+                        <input asp-for="PhoneNumber" class="form-control">
+                    </div>
+                </div>  
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>DOB <span class="text-danger">*</span></label>
+                        <input asp-for="Dob" class="form-control">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group mb-0">
+                        <label>ID Number</label>
+                        <input asp-for="Idnumber" class="form-control">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group mb-0">
+                        <label>Address Line 1</label>
+                        <input asp-for="AddressLine1" class="form-control">
+                    </div>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <div class="form-group mb-0">
+                        <label>Address Line 2</label>
+                        <input asp-for="AddressLine2" class="form-control">
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="form-group mb-0">
+                        <label>Suburb</label>
+                        <select asp-for="SuburbId" class="form-control" asp-items="ViewBag.SuburbId">
+                            <option value="" class="option">Select Suburb</option>
+                        </select>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Medical Aid</h4>
+
+            <div class="form-group mb-3">
+                <div id="pricing_select">
+                    <div class="custom-control custom-radio custom-control-inline">
+                        <input type="radio" id="price_free" name="rating_option" class="custom-control-input" value="price_free" checked>
+                        <label class="custom-control-label" for="price_free">No</label>
+                    </div>
+                    <div class="custom-control custom-radio custom-control-inline">
+                        <input type="radio" id="price_custom" name="rating_option" value="custom_price" class="custom-control-input">
+                        <label class="custom-control-label" for="price_custom">Yes</label>
+                    </div>
+                </div>
+
+            </div>
+            <div class="row custom_price_cont" id="custom_price_cont" style="display: none;">
+                <div class="col-md-6">
+                    <div class="form-group mb-3">
+                        <label>Medical Aid Scheme</label>
+                        <select asp-for="MedicalAidId" class="form-control" asp-items="ViewBag.MedicalAidId">
+                            <option value="" class="option">Select Medical Aid Scheme</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group mb-3">
+                        <label>Medical Aid Plan</label>
+                        <select asp-for="MedicalPlanId" class="form-control" asp-items="ViewBag.MedicalPlanId">
+                            <option value="" class="option">Select Medcial Plan</option>
+                        </select>
+                    </div>
+                </div>
+                <div id="custom_rating_input" class="col-md-12">
+                    <div class="form-group mb-3">
+                        <label>Medical Aid Number</label>
+                        <input type="text" class="form-control">
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="submit-section submit-btn-bottom mb-3">
+                <button type="submit" class="btn btn-primary submit-btn">Add Dependent</button>
+            </div>
+        </div>
+    </div>
+    </form>
+
+    @section scripts{
+        <script type="text/javascript">
+            $(".custom-file-input").on("change", function () {
+                var fileName = $(this).val().split("\\").pop();
+                $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+            });</script>
+    }
+
+
+
+

@@ -1,0 +1,158 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using Corona.Models
+
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+    <title>Doccure - Profile</title>
+
+    <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.png">
+
+    <link href="~/admin-assets/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/admin-assets/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/admin-assets/css/feathericon.min.css" rel="stylesheet" />
+    <link href="~/admin-assets/css/style.css" rel="stylesheet" />
+    @*<link rel="stylesheet" href="~/assetss/css/style.css">*@
+
+    <link rel="stylesheet" href="assetss/plugins/fontawesome/css/fontawesome.min.css">
+    <link rel="stylesheet" href="assetss/plugins/fontawesome/css/all.min.css">
+    <link rel="stylesheet" href="assetss/plugins/select2/css/select2.min.css">
+    <link rel="stylesheet" href="assetss/plugins/bootstrap-tagsinput/css/bootstrap-tagsinput.css">
+    <link rel="stylesheet" href="assetss/plugins/dropzone/dropzone.min.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" />
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" />
+
+    <style>
+        input.input-validation-error {
+            border-color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main-wrapper">
+        <div class="header">
+            <div class="header-left">
+                <a href="index.html" class="logo">
+                    <img src="~/assetss/img/logo.png" alt="Logo">
+                </a>
+                <a href="index.html" class="logo logo-small">
+                    <img src="~/assetss/img/logo-small.png" alt="Logo" width="30" height="30">
+                </a>
+            </div>
+            <a href="javascript:void(0);" id="toggle_btn">
+                <i class="fe fe-text-align-left"></i>
+            </a>
+
+            <div class="top-nav-search">
+                <form>
+                    <input type="text" class="form-control" placeholder="Search here">
+                    <button class="btn" type="submit"><i class="fa fa-search"></i></button>
+                </form>
+            </div>
+            <a class="mobile_btn" id="mobile_btn">
+                <i class="fa fa-bars"></i>
+            </a>
+            <ul class="nav user-menu">
+                <li class="nav-item dropdown noti-dropdown">
+                    <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
+                        <i class="fe fe-bell"></i> <span class="badge badge-pill"></span>
+                    </a>
+
+                </li>
+                <li class="nav-item dropdown has-arrow">
+                    <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
+                        <span class="user-img">
+                            <img class="rounded-circle" src="~/admin-assets/img/profiles/prof.PNG" width="31">
+
+                            @if (SignInManager.IsSignedIn(User))
+                            {
+                                <span class="mb-0 text-sm text-darker font-weight-bold">Hello @UserManager.GetUserName(User)!</span>
+                            }
+                        </span>
+                    </a>
+                    <div class="dropdown-menu">
+                        <div class="user-header">
+                            <img class="rounded-circle" src="~/admin-assets/img/profiles/prof.PNG" width="31">
+                            <div class="user-text">
+                                <h6>
+                                    @if (SignInManager.IsSignedIn(User))
+                                    {
+                                        <span class="mb-0 text-sm text-darker font-weight-bold">Hello @UserManager.GetUserName(User)!</span>
+                                    }
+                                </h6>
+                                <p class="text-muted mb-0">Main Member</p>
+                            </div>
+                        </div>
+                        <a class="dropdown-item" href="profile.html">My Profile</a>
+                        <a class="dropdown-item" href="settings.html">Settings</a>
+                        <a class="dropdown-item" asp-action="Logout" asp-controller="Account">Logout</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="sidebar" id="sidebar">
+            <div class="sidebar-inner slimscroll">
+                <div id="sidebar-menu" class="sidebar-menu">
+                    <ul>
+                        <li class="menu-title">
+                            <span>Main</span>
+                        </li>
+                        <li>
+                            <a href="index.html"><i class="fe fe-home"></i> <span>Dashboard</span></a>
+                        </li>
+                        <li>
+                            <a href="appointment-list.html"><i class="fe fe-layout"></i> <span>Appointments</span></a>
+                        </li>
+                        <li>
+                            <a asp-action="RequestAppointment" asp-controller="Scheduler"><i class="fe fe-vector"></i> <span>Make Request</span></a>
+                        </li>
+                        <li>
+                            <a href="doctor-list.html"><i class="fe fe-vector"></i> <span>View Test Results</span></a>
+                        </li>
+                        <li class="menu-title">
+                            <span>Pages</span>
+                        </li>
+                        <li class="">
+                            <a asp-action="AddDepedent" asp-controller="Dependent"><i class="fe fe-user-plus"></i> <span>Add Dependent</span></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="page-wrapper">
+            <div class="content container-fluid">
+                @RenderBody()
+            </div>
+        </div>
+    </div>
+
+    <script src="~/admin-assets/js/jquery-3.2.1.min.js"></script>
+    <script src="~/admin-assets/js/popper.min.js"></script>
+    <script src="~/admin-assets/js/bootstrap.min.js"></script>
+    <script src="~/admin-assets/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+    <script src="~/admin-assets/js/script.js"></script>
+
+    <script src="~/assetss/plugins/theia-sticky-sidebar/ResizeSensor.js"></script>
+    <script src="~/assetss/plugins/theia-sticky-sidebar/theia-sticky-sidebar.js"></script>
+    <script src="~/assetss/plugins/select2/js/select2.min.js"></script>
+    <script src="~/assetss/plugins/dropzone/dropzone.min.js"></script>
+    <script src="~/assetss/plugins/bootstrap-tagsinput/js/bootstrap-tagsinput.js"></script>
+    <script src="~/assetss/js/profile-settings.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+    @await Html.PartialAsync("_notificationPartial")
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

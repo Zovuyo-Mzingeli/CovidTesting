@@ -1,0 +1,32 @@
+﻿@model Corona.Models.Content.Province
+
+
+<h2 class="text-info">@(Model.ProvinceId!= null ? "Edit" : "Create") Province</h2>
+<hr class="my-4" />
+<div class="row">
+    <div class="col-lg-12">
+        <form asp-route-returnUrl="@ViewData["ReturnUrl"]" method="post">
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <input name="IsValid" type="hidden" value="@ViewData.ModelState.IsValid.ToString()" />
+            <input type="hidden" asp-for="ProvinceId" />
+            <div class="form-group">
+                <label class="form-control-label" asp-for="ProvinceName">Province</label>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text"><i class="fa fa-map-pin"></i></div>
+                    </div>
+                    <input asp-for="ProvinceName" class="form-control" placeholder="Province Name" />
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary submit-btn">
+                @(Model.ProvinceId != null ? "Update" : "Create")
+            </button>
+            <a asp-action="Index" class="btn btn-secondary submit-btn">
+                Back
+            </a>
+        </form>
+    </div>
+</div>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

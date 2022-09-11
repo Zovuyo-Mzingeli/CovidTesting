@@ -1,0 +1,61 @@
+﻿@model IEnumerable<Corona.Models.Content.Province>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+</head>
+<body>
+    <div id="modal-placeholder"></div>
+
+    <div class="card-header"><h6 class="text-md-center text-blue">View The List Of Province</h6></div>
+    <div class="card-body">
+        <table id="example1" class="table table-bordered table-sm table-striped table-bordered" data-url="@Url.Action("Index")">
+            <thead class="">
+                <tr class="theme-secondary">
+                    <th>
+                        Province Name
+                    </th>
+                    <th>
+                        <button type="button" data-toggle="ajax-modal" data-target="#addPopUp" data-url="@Url.Action("AddOrEdit")" class="btn btn-success">
+                            <i class="mdi mdi-plus-box btn-icon-append"></i>
+                            New Province
+                        </button>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ProvinceName)
+                        </td>
+                        <td>
+                            <button type="button" data-toggle="ajax-modal" data-target="#addPopUp" data-url="@Url.Action($"AddOrEdit/{item.ProvinceId}")" class="btn btn-outline-secondary">
+                                <i class="mdi mdi-pen btn-icon-append"></i>
+                                Edit
+                            </button>
+                            <form asp-action="Delete" asp-route-id="@item.ProvinceId" class="d-inline">
+                                <button type="submit" class="btn btn-outline-danger btn-icon-text">
+                                    <i class="mdi mdi-delete btn-icon-prepend"></i>
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th>
+                        Province Name
+                    </th>
+                    <th>
+                        Actions
+                    </th>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+
+</body>
+</html>

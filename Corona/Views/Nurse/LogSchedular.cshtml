@@ -1,0 +1,262 @@
+﻿@model IEnumerable<Corona.Models.Content.TestBooking>
+
+
+@{
+    ViewData["Title"] = "Schedule";
+    Layout = "~/Views/Shared/_StafLayout.cshtml";
+}
+<div class="card card-table">
+    <div class="card-header">
+        <h4 class="card-title">Appointment List</h4>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-hover table-center mb-0">
+                <thead>
+                    <tr>
+                        @*<th>Address</th>*@
+                        <th>Apointment Time</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            @*<td>@item.RequestTest.AddressLine1, @item.RequestTest.AddressLine2</td>*@
+
+                            <td>@item.BookingDate.ToShortDateString() <span class="text-primary d-block">@item.TimeSlot</span></td>
+                            <td>
+                                <div class="status-toggle">
+                                    <input type="checkbox" id="status_1" class="check" checked>
+                                    <label for="status_1" class="checktoggle">checkbox</label>
+                                </div>
+                            </td>
+                            <td>
+
+                            </td>
+                        </tr>
+                    }
+
+                    </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+@*<div class="card booking-schedule schedule-widget">
+    <div class="schedule-header">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="day-slot">
+                    <ul>
+                        <li class="left-arrow">
+                            <a href="#">
+                                <i class="fa fa-chevron-left"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <span>Mon</span>
+                            <span class="slot-date">15 Nov <small class="slot-year">2021</small></span>
+                        </li>
+                        <li>
+                            <span>Tue</span>
+                            <span class="slot-date">16 Nov <small class="slot-year">2021</small></span>
+                        </li>
+                        <li>
+                            <span>Wed</span>
+                            <span class="slot-date">17 Nov <small class="slot-year">2021</small></span>
+                        </li>
+                        <li>
+                            <span>Thu</span>
+                            <span class="slot-date">18 Nov <small class="slot-year">2021</small></span>
+                        </li>
+                        <li>
+                            <span>Fri</span>
+                            <span class="slot-date">19 Nov <small class="slot-year">2021</small></span>
+                        </li>
+                        <li>
+                            <span>Sat</span>
+                            <span class="slot-date">20 Nov <small class="slot-year">2021</small></span>
+                        </li>
+                        <li>
+                            <span>Sun</span>
+                            <span class="slot-date">21 Nov <small class="slot-year">2021</small></span>
+                        </li>
+                        <li class="right-arrow">
+                            <a href="#">
+                                <i class="fa fa-chevron-right"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    @foreach (var item in Model)
+    {
+
+        <div class="schedule-cont">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="time-slot">
+                        <ul class="clearfix">
+                            <li>
+                                @if (item.BookingDate.ToShortDateString() == "2021-11-15" && item.TimeSlot == "8:00 AM - 10:00 AM")
+                                {
+                                    <a class="timing selected" href="#">
+                                        <span>8:00 - 10:00</span> <span>AM</span>
+                                    </a>
+                                }
+                                else
+                                {
+                                    <a class="timing" href="#">
+                                        <span>8:00 - 10:00</span> <span>AM</span>
+                                    </a>
+                                }
+
+                                <a class="timing" href="#">
+                                    <span>10:00 - 12:00</span> <span>PM</span>
+                                </a>
+                                <a class="timing" href="#">
+                                    <span>12:00 - 14:00</span> <span>PM</span>
+                                </a>
+                                <a class="timing" href="#">
+                                    <span>14:00 - 16:00</span> <span>PM</span>
+                                </a>
+                                <a class="timing" href="#">
+                                    <span>16:00 - 18:00</span> <span>PM</span>
+                                </a>
+                                <a class="timing" href="#">
+                                    <span>18:00 - 20:00</span> <span>PM</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="timing" href="#">
+                                    <span>8:00 - 10:00</span> <span>AM</span>
+                                </a>
+                                <a class="timing" href="#">
+                                    <span>10:00 - 12:00</span> <span>PM</span>
+                                </a>
+                                <a class="timing" href="#">
+                                    <span>12:00 - 14:00</span> <span>PM</span>
+                                </a>
+                                <a class="timing" href="#">
+                                    <span>14:00 - 16:00</span> <span>PM</span>
+                                </a>
+                                <a class="timing" href="#">
+                                    <span>16:00 - 18:00</span> <span>PM</span>
+                                </a>
+                                <a class="timing" href="#">
+                                    <span>18:00 - 20:00</span> <span>PM</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="timing" href="#">
+                                    <span>8:00 - 10:00</span> <span>AM</span>
+                                </a>
+                                <a class="timing" href="#">
+                                    <span>10:00 - 12:00</span> <span>PM</span>
+                                </a>
+                                <a class="timing" href="#">
+                                    <span>12:00 - 14:00</span> <span>PM</span>
+                                </a>
+                                <a class="timing" href="#">
+                                    <span>14:00 - 16:00</span> <span>PM</span>
+                                </a>
+                                <a class="timing" href="#">
+                                    <span>16:00 - 18:00</span> <span>PM</span>
+                                </a>
+                                <a class="timing" href="#">
+                                    <span>18:00 - 20:00</span> <span>PM</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="timing" href="#">
+                                    <span>8:00 - 10:00</span> <span>AM</span>
+                                </a>
+                                <a class="timing" href="#">
+                                    <span>10:00 - 12:00</span> <span>PM</span>
+                                </a>
+                                <a class="timing" href="#">
+                                    <span>12:00 - 14:00</span> <span>PM</span>
+                                </a>
+                                <a class="timing" href="#">
+                                    <span>14:00 - 16:00</span> <span>PM</span>
+                                </a>
+                                <a class="timing" href="#">
+                                    <span>16:00 - 18:00</span> <span>PM</span>
+                                </a>
+                                <a class="timing" href="#">
+                                    <span>18:00 - 20:00</span> <span>PM</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="timing" href="#">
+                                    <span>8:00 - 10:00</span> <span>AM</span>
+                                </a>
+                                <a class="timing" href="#">
+                                    <span>10:00 - 12:00</span> <span>PM</span>
+                                </a>
+                                <a class="timing" href="#">
+                                    <span>12:00 - 14:00</span> <span>PM</span>
+                                </a>
+                                <a class="timing" href="#">
+                                    <span>14:00 - 16:00</span> <span>PM</span>
+                                </a>
+                                <a class="timing" href="#">
+                                    <span>16:00 - 18:00</span> <span>PM</span>
+                                </a>
+                                <a class="timing" href="#">
+                                    <span>18:00 - 20:00</span> <span>PM</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="timing" href="#">
+                                    <span>8:00 - 10:00</span> <span>AM</span>
+                                </a>
+                                <a class="timing" href="#">
+                                    <span>10:00 - 12:00</span> <span>PM</span>
+                                </a>
+                                <a class="timing" href="#">
+                                    <span>12:00 - 14:00</span> <span>PM</span>
+                                </a>
+                                <a class="timing" href="#">
+                                    <span>14:00 - 16:00</span> <span>PM</span>
+                                </a>
+                                <a class="timing" href="#">
+                                    <span>16:00 - 18:00</span> <span>PM</span>
+                                </a>
+                                <a class="timing" href="#">
+                                    <span>18:00 - 20:00</span> <span>PM</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="timing" href="#">
+                                    <span>8:00 - 10:00</span> <span>AM</span>
+                                </a>
+                                <a class="timing" href="#">
+                                    <span>10:00 - 12:00</span> <span>PM</span>
+                                </a>
+                                <a class="timing" href="#">
+                                    <span>12:00 - 14:00</span> <span>PM</span>
+                                </a>
+                                <a class="timing" href="#">
+                                    <span>14:00 - 16:00</span> <span>PM</span>
+                                </a>
+                                <a class="timing" href="#">
+                                    <span>16:00 - 18:00</span> <span>PM</span>
+                                </a>
+                                <a class="timing" href="#">
+                                    <span>18:00 - 20:00</span> <span>PM</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }*@

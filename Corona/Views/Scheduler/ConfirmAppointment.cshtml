@@ -1,0 +1,81 @@
+﻿@model Corona.Models.ViewModels.AssignSpecialistViewModel.AssignSpecialistToAppointment
+
+@{
+    ViewData["Title"] = "ConfirmAppointment";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-lg-12">
+        <dl class="row text-right">
+            <dt class="col-sm-4">
+                <label class="control-label">Patient Name:</label>
+            </dt>
+            <dd class="col-sm-5 text-center">
+                <span class="col-sm-8 form-control-static"><select asp-for="PatientName" asp-items="@ViewBag.PatientId" disabled></select></span>
+            </dd>
+            <dt class="col-sm-4">
+                <label class="control-label">Appointment Info:</label>
+            </dt>
+            <dd class="col-sm-5 text-center">
+                <span class="form-control-static">@Html.DisplayFor(model => model.AppointmentDescription)</span>
+            </dd>
+            <dt class="col-sm-4">
+                <label class="control-label">Appointment Date:</label>
+            </dt>
+            <dd class="col-sm-5 text-center">
+                <span class="form-control-static">  @Html.DisplayFor(model => model.AppointmentDate)</span>
+            </dd>
+            <dt class="col-sm-4">
+                <label class="control-label">Appointment Time:</label>
+            </dt>
+            <dd class="col-sm-5 text-center">
+                <span class="form-control-static">@Html.DisplayFor(model => model.StartTime)</span>
+            </dd>
+            <dt class="col-sm-4">
+                <label class="control-label">Clinic:</label>
+            </dt>
+            <dd class="col-sm-5 text-center">
+                <span class="col-sm-8 form-control-static">
+                    <select asp-for="ClinicId" asp-items="@ViewBag.ClinicId" disabled></select>
+                </span>
+            </dd>
+        </dl>
+
+        <form asp-action="ConfirmAppointment" method="post" class="form-horizontal" role="form">
+            <div> @Html.ValidationMessage("NotChecked") </div>
+            <input type="hidden" asp-for="AppointmentId" />
+            <input type="hidden" asp-for="Patient.Email" />
+
+            <dl class="row text-right">
+                <dt class="col-sm-4">
+                    <label class="control-label">Nurse:</label>
+                </dt>
+                <dd class="col-sm-5 text-center">
+                    <span class="form-control-static">
+                        <select asp-for="NurseId" class="form-control" asp-items="@Model.Nurses">
+                            <option value="" class="option">Select Nurse</option>
+                        </select>
+                    </span>
+                </dd> 
+                <dt class="col-sm-4">
+                    <label class="control-label">Approve Appointemnt:</label>
+                </dt>
+                <dd class="col-sm-5 text-right pb-3">
+                    <span class="form-control-static"><input class="ql-size-large" asp-for="IsConfirmed" id="myCheck" type="checkbox" /></span>
+                </dd>
+
+            </dl>
+            <div class="m-t-20 text-center">
+                <button type="submit" onclick="checkCheckBox()" class="btn btn-primary submit-btn">Assign Staff</button>
+            </div>
+            <script>
+                function checkCheckBox() {
+                    if (document.getElementById("myCheck").checked == false) {
+                        alert("You haven't confirmed in checkbox!");
+                    }
+                }
+            </script>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,129 @@
+﻿@model Corona.Models.ViewModels.UserRegistrationModel
+
+@{
+    ViewData["Title"] = "Register";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="card align-content-md-center">
+    <div class="card-header bg-info text-center text-white font-weight-bolder"><h4>Register</h4></div>
+    <div class="card-body bg-transparent text-black-50 text-left">
+        <form asp-action="Register" method="post">
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <div class="form-row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="form-control-label" asp-for="FirstName">Name</label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text"><i class="fa fa-user"></i></div>
+                            </div>
+                            <input asp-for="FirstName" class="form-control" placeholder="First Name"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="form-control-label" asp-for="LastName">Surname</label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text"><i class="fa fa-user"></i></div>
+                            </div>
+                            <input asp-for="LastName" class="form-control" placeholder="Last Name"  />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label class="form-control-label" asp-for="Email">Email</label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text"><i class="fa fa-envelope"></i></div>
+                            </div>
+                            <input asp-for="Email" class="form-control" placeholder="Email Address" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="form-control-label" asp-for="Password">Password</label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text"><i class="fa fa-key"></i></div>
+                            </div>
+                            <input asp-for="Password" class="form-control" placeholder="Password" />
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="form-control-label" asp-for="ConfirmPassword">Confirm Password</label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text"><i class="fa fa-key"></i></div>
+                            </div>
+                            <input asp-for="ConfirmPassword" class="form-control" placeholder="Confirm Password" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label class="form-control-label" asp-for="DepartmentId">Department</label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text"><i class="fa fa-hospital-o"></i></div>
+                            </div>
+                            <select asp-for="DepartmentId" asp-items="@ViewBag.DepartmentId" class="form-control">
+                                <option value="" class="option">Select Department</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="form-control-label" asp-for="ClinicId">Clinic</label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text"><i class="fa fa-h-square"></i></div>
+                            </div>
+                            <select asp-for="ClinicId" asp-items="@ViewBag.ClinicId" class="form-control">
+                                <option value="" class="option">Select Clinic</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 pb-4">
+                    <div class="form-group">
+                        <label class="form-control-label" asp-for="HospitalId">Hospital</label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text"><i class="fa fa-h-square"></i></div>
+                            </div>
+                            <select asp-for="HospitalId" asp-items="@ViewBag.HospitalId" class="form-control">
+                                <option value="" class="option">Select Hospital</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary submit-btn">
+                    Register
+                </button>
+                <a asp-action="Index" asp-controller="Users" class="btn btn-secondary submit-btn">
+                    Back
+                </a>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,70 @@
+﻿@model Corona.Models.ViewModels.PatientViewModel.PatientAppointmentFormViewModel
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_LayoutMain_Member.cshtml";
+}
+<div class="row">
+    <div class="col-md-7 col-lg-8">
+        <div class="card">
+            <div class="card-body">
+                <form asp-action="RequestAppointment" method="post">
+                    <div asp-validation-summary="All" class="text-danger"></div>
+                    <div class="info-widget">
+                        <h4 class="card-title">Address</h4>
+                        <div class="row">
+                            <div class="col-md-6 col-sm-12">
+                                <div class="form-group card-label">
+                                    <label>Address Line 1</label>
+                                    <input asp-for="AddressLine1" class="form-control" type="text">
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                                <div class="form-group card-label">
+                                    <label>Address Line 2</label>
+                                    <input asp-for="AddressLine2" class="form-control" type="text">
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-sm-12">
+                                <div class="form-group card-label">
+                                    <label>Suburb</label>
+                                    <select asp-for="SuburbId" asp-items="ViewBag.SuburbId" class="form-control">
+                                        <option>Please Select Suburb</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="payment-widget">
+                        <h4 class="card-title mb-4">Test Subject</h4>
+                        <div class="payment-list">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group card-label">
+                                        <label for="card_name">Select Patient</label>
+                                        <select asp-for="DependentId" asp-items="ViewBag.PatientId" class="form-control">
+                                            <option>Please Select Test Subject</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="submit-section mt-4">
+                            <button type="submit" class="btn btn-primary submit-btn">Submit Request</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="col-md-5 col-lg-4 theiaStickySidebar">
+        <div class="card booking-card">
+            <div class="card-header">
+                <h4 class="card-title">Booking Summary</h4>
+            </div>
+        </div>
+    </div>
+</div>

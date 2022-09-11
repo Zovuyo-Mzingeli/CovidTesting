@@ -1,0 +1,61 @@
+﻿@model IEnumerable<IdentityRole>
+@{
+    ViewData["Title"] = "Index";
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+</head>
+<body>
+    <hr class="my-4" />
+    <div id="PlaceholderHere"></div>
+    <hr class="my-4" />
+
+    <div class="card-header"><h6 class="text-md-center text-blue">View The List Of Role</h6></div>
+    <div class="card-body">
+        <table id="example1" class="table table-bordered table-sm table-striped table-bordered">
+            <thead class="">
+                <tr class="theme-secondary">
+                    <th>Role Name</th>
+                    <th>User Name</th>
+                    <th>
+                        <button type="button" data-toggle="ajax-modal" data-target="#addPopUp" data-url="@Url.Action("Create")" class="btn btn-success">
+                            <i class="mdi mdi-plus-box btn-icon-append"></i>
+                            New role
+                        </button>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var role in Model)
+                {
+                    <tr>
+                        <td>@role.Name</td>
+                        <td identity-role="@role.Id"></td>
+                        <td>
+                           
+                            <form asp-action="Delete" asp-route-id="@role.Id" class="d-inline">
+                                <button asp-action="Edit" class="btn btn-outline-secondary">
+                                    <i class="mdi mdi-pen btn-icon-append"></i>
+                                    Edit
+                                </button>
+                                <button type="submit" class="btn btn-outline-danger btn-icon-text">
+                                    <i class="mdi mdi-delete btn-icon-prepend"></i>
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th>Role Name</th>
+                    <th>User Name</th>
+                    <th>Actions</th>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+</body>
+</html>

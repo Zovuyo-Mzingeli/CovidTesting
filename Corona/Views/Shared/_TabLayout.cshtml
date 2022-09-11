@@ -1,0 +1,68 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_StafLayout.cshtml";
+}
+
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+
+<div class="header bg-white pb-1">
+    <div class="container-fluid">
+        <div class="header-body">
+            <div class="row align-items-center py-4">
+                <div class="col-lg-6 col-7">
+                    <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
+                        <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
+                            <li class="breadcrumb-item"><a asp-controller="Doctor" asp-action="Index"><i class="ni ni-single-02 text-yellow"></i></a></li>
+                            <li class="breadcrumb-item"><a asp-controller="Examinations" asp-action="VSigns">Appointment Checkin</a></li>
+                            <li class="breadcrumb-item active text-info" aria-current="page">Patient Examination</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-12 order-xl-12">
+        <div class="card">
+            <div class="card-header">
+                <ul class="nav nav-tabs">
+                        <div class="col-md-12">
+                            <nav>
+                                <div class="nav nav-tabs">
+                                    <a class="nav-item nav-link" href="/Examinations/VSigns" >Vitals Sign</a>
+                                    <a class="nav-item nav-link" href="/Examinations/Examination">Examination Notes</a>
+                                    <a class="nav-item nav-link" asp-controller="Examinations"  asp-action="Allergies">Patient Allergies</a>
+                                    <a class="nav-item nav-link" asp-controller="Examinations" asp-action="Prescription">Prescription</a>
+                                    <a class="nav-item nav-link" asp-controller="Examinations" asp-action="Referral">Pateint Referral</a>
+                                </div>
+                            </nav>
+                            <div class="tab-content py-5 px-3 px-sm-0" id="nav-tabContent">
+                                <div class="col-md-12">
+                                    @RenderBody()
+                                </div>
+                            </div>
+                        </div>
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts{ 
+@RenderSection("Scripts", required: false)
+
+<script>
+    $(function () {
+        var current = location.pathname;
+        $('.nav-tabs a').each(function () {
+            var $this = $(this);
+            if (current.indexOf($this.attr('href')) !== -1) {
+                $this.addClass('active');
+
+            }
+        })
+    })
+</script>
+}

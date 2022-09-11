@@ -1,0 +1,119 @@
+﻿@model IEnumerable<Corona.Models.ViewModels.PatientViewModel.PatientAppointmentsListViewModel>
+
+@{
+    ViewData["Title"] = "Appointments";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@{
+    var trClass = "bg-active";
+}
+
+
+<div class="row">
+    <div class="col-sm-4 col-3">
+        <h4 class="page-title">All Confirmed Appointment</h4>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="table-responsive">
+            <table class="table table-border table-striped custom-table datatable mb-0">
+                <thead>
+                    @if (Model.Count() == 0)
+                    {
+                        <tr>
+                            <th scope="row" colspan="6" class="text-center">No Appointments</th>
+                        </tr>
+                    }
+                    else
+                    {
+                        <tr>
+                            <th>Patient</th>
+                            <th>Date</th>
+                            <th>From</th>
+                            <th>Status</th>
+                            <th>Clinic</th>
+                            <th>Hospital</th>
+                            <th>Doctor</th>
+                            <th>Nurse</th>
+                            <th>Description</th>
+                            <th>Action</th>
+                        </tr>
+                    }
+                </thead>
+                <tbody>
+                    @foreach (var appointment in Model)
+                    {
+
+                        <tr class="@trClass">
+                            <th scope="row">@appointment.PatientName</th>
+                            <td>@appointment.AppointmentDate.ToShortDateString()</td>
+                            <td>@appointment.StartTime</td>
+                            <td>
+                                @if (appointment.IsConfirmed == true)
+                                {
+                                    <span class="text-success">Confirmed</span>
+                                }
+                                else
+                                {
+                                    <span class="text-warning">Pending</span>
+                                }
+                            </td>
+                            <td>
+                                @if (appointment.ClinicName != null)
+                                {
+                                    @appointment.ClinicName
+                                }
+                                else
+                                {
+                                    <span class="text-warning">N/A</span>
+                                }
+                            </td>
+                            <td>
+                                @if (appointment.HospitalName != null)
+                                {
+                                    @appointment.HospitalName
+                                }
+                                else
+                                {
+                                    <span class="">N/A</span>
+                                }
+                            </td>
+                            <td>
+                                @if (appointment.DoctorName != null)
+                                {
+                                    @appointment.DoctorName
+                                }
+                                else
+                                {
+                                    <span class="">Not Assigned</span>
+                                }
+                            </td>
+                            <td>
+                                @if (appointment.NurseName != null)
+                                {
+                                    @appointment.NurseName
+                                }
+                                else
+                                {
+                                    <span class="">Not Assigned</span>
+                                }
+                            </td>
+                            <td>@appointment.AppointmentDescription</td>
+                            <td class="text-right">
+                                <div class="dropdown dropdown-action">
+                                    <a class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
+                                    <div class="dropdown-menu dropdown-menu-right">
+                                        <a class="dropdown-item" asp-action="DeleteAppointment" asp-route-id="@appointment.AppointmentId"><i class="fa fa-trash-o m-r-5"></i> Cancel</a>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+

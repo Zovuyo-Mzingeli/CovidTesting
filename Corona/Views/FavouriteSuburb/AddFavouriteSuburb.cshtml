@@ -1,0 +1,56 @@
+﻿@model Corona.Models.ViewModel.SuburbViewModel.NurseFavouriteViewModel
+@{
+    ViewData["Title"] = "AddFavouriteSuburb";
+    Layout = "~/Views/Shared/_UsersLayout.cshtml";
+}
+
+<div class="col-xl-12 order-xl-1">
+    <div class="card">
+        <div class="card-header">
+            <div class="row align-items-center">
+                <div class="col-8">
+                    <h3 class="mb-0"></h3>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="bg-primary m-1 p-1 text-white"><h4>Favourite Suburb</h4></div>
+            <hr />
+            <br />
+            <form asp-action="AddFavouriteSuburb">
+                <div asp-validation-summary="All" class="text-danger"></div>
+                <div class="pl-lg-4">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label class="form-control-label" asp-for="SuburbId"> Favourite Suburb</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text"><i class="zmdi zmdi-alarm-off"></i></div>
+                                    </div>
+                                    <select class="form-control" asp-for="SuburbId" asp-items="ViewBag.SuburbId">
+                                        <option selected="selected">---Please Select---</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                   
+                    <hr class="my-4" />
+                    <div class="pl-lg-4">
+                        <button type="submit" class="btn btn-primary submit-btn">
+                            Submit
+                        </button>
+                    </div>
+            </form>
+        </div>
+    </div>
+
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+
+

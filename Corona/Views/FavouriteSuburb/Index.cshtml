@@ -1,0 +1,64 @@
+﻿@model  IEnumerable<Corona.Models.ViewModel.SuburbViewModel.NurseFavouriteViewModel>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_StafLayout.cshtml";
+
+}
+
+<div class="col-xl-12 order-xl-1">
+    <div class="card">
+        <div class="card-header">
+            <div class="row align-items-center">
+                <div class="col-8">
+                    <h3 class="mb-0"></h3>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+            <h6 class="heading-small text-muted mb-4">Your Favourate Suburb</h6>
+            <div class="mb-0">
+
+                <a asp-action="AddFavouriteSuburb" class="btn btn-secondary btn-icon-text bs-tooltip-left">
+                    <i class="mdi mdi-reload btn-icon-prepend"></i>
+                    Add Favourate
+                </a><br />
+               
+                <div class="card-body">
+
+                    <table class="table">
+                        <thead>
+                            @if (Model.Count() == 0)
+                            {
+                                <tr>
+                                    <th scope="row" colspan="6" class="text-center">No Favourate Suburb was Added</th>
+                                </tr>
+                            }
+                            else
+                            {
+                                <tr>
+                                    <th>
+                                        Favourate Suburb
+                                    </th>
+
+                                    <th></th>
+                                </tr>
+                            }
+
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.SuburbId)
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

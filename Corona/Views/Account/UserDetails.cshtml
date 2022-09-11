@@ -1,0 +1,75 @@
+﻿@model Corona.Models.ApplicationUser
+
+@{
+    ViewData["Title"] = "UserDetails";
+    Layout = "~/Views/Shared/_UsersLayout.cshtml";
+}
+
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
+        <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
+            <li class="breadcrumb-item"><a asp-controller="Account" asp-action="Index"><i class="ni ni-single-02 text-yellow"></i></a></li>
+            <li class="breadcrumb-item"><a asp-controller="Account" asp-action="UserDetails">Profile</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Details</li>
+        </ol>
+    </nav>
+</div>
+
+<div class="col-xl-12 order-xl-1">
+    <div class="card">
+        <div class="card-header">
+            <div class="row align-items-center">
+                <div class="col-8">
+                    <h3 class="mb-0"> </h3>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="panel-body bio-graph-info">
+                <h1 class="text-center">Bio Graph</h1>
+                <hr class="my-4" />
+                <dl class="row text-right">
+                    <dt class="col-sm-4">
+                        <label class="control-label">First Name:</label>
+                    </dt>
+                    <dd class="col-sm-5 text-center">
+                        <span class="form-control-static"> @Html.DisplayFor(model => model.FirstName)</span>
+                    </dd>
+                    <dt class="col-sm-4">
+                        <label class="control-label">Surname:</label>
+                    </dt>
+                    <dd class="col-sm-5 text-center">
+                        <span class="form-control-static">  @Html.DisplayFor(model => model.LastName)</span>
+                    </dd>
+                    <dt class="col-sm-4">
+                        <label class="control-label">Email Address:</label>
+                    </dt>
+                    <dd class="col-sm-5 text-center">
+                        <span class="form-control-static"> @Html.DisplayFor(model => model.Email)</span>
+                    </dd>
+                    <dt class="col-sm-4">
+                        <label class="control-label">Title:</label>
+                    </dt> 
+                    <dt class="col-sm-4">
+                        <label class="control-label">Date Of Birth:</label>
+                    </dt>
+                    <dd class="col-sm-5 text-center">
+                        <span class="col-sm-8 form-control-static"> @Html.DisplayFor(model => model.Dob)</span>
+                    </dd>
+                    <dt class="col-sm-4">
+                        <label class="control-label">ID Number:</label>
+                    </dt>
+                    <dd class="col-sm-5 text-center">
+                        <span class="col-sm-8 form-control-static"> @Html.DisplayFor(model => model.Idnumber)</span>
+                    </dd> 
+                    <dt class="col-sm-4">
+                        <label class="control-label">Address Line 1:</label>
+                    </dt>
+                    <dd class="col-sm-5 text-center">
+                        <span class="form-control-static">@Html.DisplayFor(model => model.AddressLine1)</span>
+                    </dd>
+                </dl>
+            </div>
+        </div>
+    </div>
+</div>    

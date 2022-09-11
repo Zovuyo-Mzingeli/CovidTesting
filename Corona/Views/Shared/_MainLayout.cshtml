@@ -1,0 +1,157 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+    <title>Covid Testing</title>
+
+    <link type="image/x-icon" href="assets/img/favicon.png" rel="icon">
+
+    <link rel="stylesheet" href="~/assetss/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/assetss/plugins/fontawesome/css/fontawesome.min.css">
+    <link rel="stylesheet" href="~/assetss/plugins/fontawesome/css/all.min.css">
+    <link href="~/admin-assets/css/style.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/assetss/css/style.css">
+
+    <link href="~/admin-assets/css/font-awesome.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" />
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" />
+
+    <style>
+        input.input-validation-error {
+            border-color: red;
+        }
+    </style>
+</head>
+<body>
+    <div class="main-wrapper">
+        <header class="header">
+            <nav class="navbar navbar-expand-lg header-nav">
+                <div class="navbar-header">
+                    <a id="mobile_btn" href="javascript:void(0);">
+                        <span class="bar-icon">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </span>
+                    </a>
+                    <a asp-action="Index" asp-controller="Home" class="navbar-brand logo">
+                        <img src="~/assetss/img/logo.png" class="img-fluid" alt="Logo">
+                    </a>
+                </div>
+                <div class="main-menu-wrapper">
+                    <div class="menu-header">
+                        <a href="index-2.html" class="menu-logo">
+                            <img src="assets/img/logo.png" class="img-fluid" alt="Logo">
+                        </a>
+                        <a id="menu_close" class="menu-close" href="javascript:void(0);">
+                            <i class="fas fa-times"></i>
+                        </a>
+                    </div>
+                    <ul class="main-nav">
+                        <li class="active">
+                            <a href="index-2.html">Home</a>
+                        </li>
+                        <li class="has-submenu">
+                            <a href="#">Doctors <i class="fas fa-chevron-down"></i></a>
+                            <ul class="submenu">
+                                <li><a href="doctor-dashboard.html">Doctor Dashboard</a></li>
+                                <li><a href="appointments.html">Appointments</a></li>
+                                <li><a href="schedule-timings.html">Schedule Timing</a></li>
+                            </ul>
+                        </li>
+                        <li class="has-submenu">
+                            <a href="#">Patients <i class="fas fa-chevron-down"></i></a>
+                            <ul class="submenu">
+                                <li><a href="search.html">Search Doctor</a></li>
+                                <li><a href="doctor-profile.html">Doctor Profile</a></li>
+                                <li><a href="booking.html">Booking</a></li>
+                                <li><a href="checkout.html">Checkout</a></li>
+                            </ul>
+                        </li>
+                        <li class="has-submenu">
+                            <a href="#">Pages <i class="fas fa-chevron-down"></i></a>
+                            <ul class="submenu">
+                                <li><a href="voice-call.html">Voice Call</a></li>
+                                <li><a href="video-call.html">Video Call</a></li>
+                                <li><a href="login.html">Login</a></li>
+                                <li><a href="register.html">Register</a></li>
+                                <li><a href="forgot-password.html">Forgot Password</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="admin/index.html" target="_blank">Admin</a>
+                        </li>
+                        <li class="login-link">
+                            <a href="login.html">Login / Signup</a>
+                        </li>
+                    </ul>
+                </div>
+                <ul class="nav header-navbar-rht">
+                    <li class="nav-item contact-item">
+                        <div class="header-contact-img">
+                            <i class="far fa-hospital"></i>
+                        </div>
+                        <div class="header-contact-detail">
+                            <p class="contact-header">Contact</p>
+                            <p class="contact-info-header"> +1 315 369 5943</p>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link header-login" asp-action="Register" asp-controller="Account">login / Signup </a>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+
+        <section class="section section-search">
+            <div class="container-fluid">
+                <div class="banner-wrapper">
+                    @RenderBody()
+                </div>
+            </div>
+        </section>
+        @*<footer class="footer">
+                <div class="footer-bottom">
+                    <div class="container-fluid">
+                        <div class="copyright">
+                            <div class="row">
+                                <div class="col-md-6 col-lg-6">
+                                    <div class="copyright-text">
+                                        <p class="mb-0"><a href="templateshub.net">Templates Hub</a></p>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-lg-6">
+                                    <div class="copyright-menu">
+                                        <ul class="policy-menu">
+                                            <li><a href="term-condition.html">Terms and Conditions</a></li>
+                                            <li><a href="privacy-policy.html">Policy</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </footer>*@
+    </div>
+
+    <script src="~/assets/js/popper.min.js"></script>
+    <script src="~/assets/js/bootstrap.min.js"></script>
+    <script src="~/assets/js/jquery.min.js"></script>
+    <script src="~/assets/js/slick.js"></script>
+    <script src="~/assets/js/script.js"></script>
+
+
+    <script src="~/assets/js/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+    @await Html.PartialAsync("_notificationPartial")
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

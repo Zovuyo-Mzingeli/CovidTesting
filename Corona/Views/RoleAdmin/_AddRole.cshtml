@@ -1,0 +1,38 @@
+﻿@model RoleViewModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<div class="card-header"><h6 class="text-md-center text-blue">Fill And Submit The Form</h6></div>
+<div class="card-body">
+    <div class="row">
+        <div class="col-md-12">
+            <form asp-action="Create " method="post" enctype="multipart/form-data">
+                <div asp-validation-summary="All" class="text-danger"></div>
+                <input name="IsValid" type="hidden" value="@ViewData.ModelState.IsValid.ToString()" />
+                <input type="hidden" asp-for="Id" />
+                <div class="pl-lg-4">
+                    <div class="form-group row">
+                        <label asp-for="Name" class="col-sm-4 col-form-label"></label>
+                        <div class="col-sm-8">
+                            <input asp-for="Name" class=" form-control" />
+                            <span asp-validation-for="Name" class="text-danger"></span>
+                        </div>
+                    </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-outline-primary btn-icon-text btn-sm">
+                            <i class="mdi mdi-content-save-all btn-icon-prepend"></i>
+                            Submit
+                        </button>
+                        <button asp-action="Index" type="submit" class="btn btn-outline-secondary btn-icon-text btn-sm">
+                            <i class="mdi mdi-reload btn-icon-prepend"></i>
+                            Back
+                        </button>
+                    </div>
+            </form>
+        </div>
+    </div>
+</div>
+

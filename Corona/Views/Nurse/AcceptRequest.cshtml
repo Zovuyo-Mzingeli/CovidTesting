@@ -1,0 +1,56 @@
+﻿@model Corona.Models.ViewModels.DoctorViewModel.DoctorScheduleViewModel
+
+
+@{
+    ViewData["Title"] = "Schedule";
+    Layout = "~/Views/Shared/_StafLayout.cshtml";
+}
+
+<form asp-action="AcceptRequest" method="post">
+    <div asp-validation-summary="All" class="text-danger"></div>
+    <input type="hidden" asp-for="NurseId" class="form-control">
+    <input type="hidden" asp-for="RequestId" class="form-control">
+    <div class="card">
+        <div class="card-body">
+            <div class="doctor-widget">
+                <div class="doc-info-left col-md-6">
+                    <div class="doctor-img">
+                        <img src="~/admin-assets/img/profiles/prof.PNG" class="img-fluid" alt="User Image">
+                    </div>
+                    <div class="doc-info-cont">
+                        <p class="doc-speciality"></p>
+                        <div class="clinic-details">
+                            <p class="doc-location"><i class="fas fa-map-marker-alt"></i> @Html.DisplayFor(model => model.AddressLine1) <br />@Html.DisplayFor(model => model.AddressLine2)</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="row col-md-6">
+
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label>Schedule Date <span class="text-danger">*</span></label>
+                            <input asp-for="BookingDate" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group mb-4">
+                            <label>Time Slot</label>
+                            <select asp-for="TimeSlot" class="form-control">
+                                <option value="08:00 AM - 10:00 AM" class="option">08:00 AM - 10:00 AM</option>
+                                <option value="10:00 AM - 12:00 PM" class="option">10:00 AM - 12:00 PM</option>
+                                <option value="12:00 PM - 14:00 PM" class="option">12:00 PM - 14:00 PM</option>
+                                <option value="14:00 PM - 16:00 PM" class="option">14:00 PM - 16:00 PM</option>
+                                <option value="16:00 PM - 18:00 PM" class="option">16:00 PM - 18:00 PM</option>
+                                <option value="18:00 PM - 20:00 PM" class="option">18:00 PM - 20:00 PM</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="clinic-booking col-6">
+                        <button types="submit" class="btn btn-primary submit-btn">Confirm Schedule</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
